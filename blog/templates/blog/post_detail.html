@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{%block content%}
+
+	<div class="ml-5 border-top">
+		
+			<h2>{{object.title}} </h2>
+			by  {{object.author}} at {{object.date_created}}
+			
+			<p>{{object.content}}</p>
+		
+	</div>
+{%endblock%}
