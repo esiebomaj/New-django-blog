@@ -1,5 +1,6 @@
 
 {%load static%}
+{%load crispy_forms_tags%}
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,12 +16,58 @@
 	<link rel="stylesheet"  href="{% static 'blog/base.css' %}" >
 </head>
 <body>
-	<a class="btn btn-success ml-2" href="{%url 'home'%}">Home</a>
-	<a class="btn btn-success ml-2" href="#">About</a>
 
-	{%block content%}
+		<nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
+		  <a class="navbar-brand" href="{%url 'home'%}"><strong>Blog</strong></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
 
-	{%endblock%}
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto pl-4 pr-4">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="{%url 'home'%}">Home <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">About</a>
+		      </li>
+		     
+		    </ul>
+		    
+
+		    	{%if user.is_authenticated %}
+
+		    		<form class="form-inline my-2 my-lg-0 ">
+				    	<a class="nav-link " href="{% url 'new-post' %}">+New Post</a>
+				      <button class="btn btn-outline-success my-2 my-sm-0 ml-4 " type="submit">Profile</button>
+
+				      <a href="{%url 'logout'%}" class="btn btn-outline-success my-2 my-sm-0 ml-5 mr-5 " >Logout</a>
+				    </form>
+
+		      	{%else%}
+
+		      		<form class="form-inline my-2 my-lg-0 ">
+			      		<a href="{%url 'login'%}" class="btn btn-outline-success my-2 my-sm-0 ml-4 " >Login</a>
+			      		<a href="{%url 'signup'%}" class="btn btn-outline-success my-2 my-sm-0 ml-4 " >Sign-up</a>
+			      	</form>
+
+		    	{%endif%}
+		   		
+		    
+		  </div>
+		</nav>
+
+
+	<div class="container p-4 pt-3">
+
+
+		{%block content%}
+
+		{%endblock%}
+
+		
+	</div>
+	
 	
 
 

@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{%load crispy_forms_tags%}
+{%block content%}
+
+<div class="container pl-5 pr-5">
+	<form method='post'>
+	
+	{%csrf_token%}
+	<h2> {{post.title}}</h2>
+	{{form|crispy}}
+	<div class=" mt-5">
+		<p class="mb-5" >Are you sure you want to delete this post??</p>
+		<input class="btn btn-success" type="submit" value="Yes delete!!"/>
+		<a class="btn btn-danger ml-5" href="{%url 'post-detail' post.id %}" >No cancel</a>
+	</div>
+
+</form>
+</div>
+
+	
+{%endblock%}

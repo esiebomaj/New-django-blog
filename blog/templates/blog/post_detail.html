@@ -2,12 +2,16 @@
 
 {%block content%}
 
-	<div class="ml-5 border-top">
+	<div class="container pl-5 pr-5">
 		
-			<h2>{{object.title}} </h2>
-			by  {{object.author}} at {{object.date_created}}
+			<h2 class='mt-5 mb-3'>{{object.title}} </h2>
+
+			<strong class="mb-3">by  {{object.author}} at {{object.date_created}}</strong> 
 			
-			<p>{{object.content}}</p>
+			<p class="mt-2 mb-5"> {{object.content}}</p>
+
+			<a class="btn btn-outline-danger" href="{% url 'post-delete' post.id%}">Delete post</a>
+			<a class="btn btn-outline-success float-right" href="{% url 'post-update' post.id%}">Update post</a>
 		
 	</div>
 {%endblock%}

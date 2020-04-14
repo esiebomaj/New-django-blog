@@ -1,16 +1,33 @@
 
 {% extends 'blog/base.html' %}
+{%load static%}
 
-{%block content%}
-	<h1 class="h1">Jerry's blog home</h1>
+{% block content %}
 
-	<div class="ml-5 border-top">
-		{%for post in object_list%}
-		<a href="{% url 'post-detail' post.pk %}"><h2>{{post.title}} </h2></a>
-			
-			by  {{post.author}} at {{post.date_created}}
-			
-			<p>{{post.content}}</p>
-		{%endfor%} 
-	</div>
+	{%if user.is_authenticated %}
+
+		<p>Hello <strong>{{user.username}}</strong></p>
+
+  	{%else%}
+
+  		<p class="text-muted">you are not Logged in</p>
+
+	{%endif%}
+
+
+	{%for post in object_list%}
+		<div class="card">
+		  <div class="card-header">
+		   by {{post.author}} at {{post.date_created}}
+		  </div>
+		  <div class="card-body">
+		    <h5 class="card-title">{{post.title}}</h5>
+		    <p class="card-text">{{post.content}}</p>
+		    <a href="{% url 'post-detail' post.pk %}" class="btn btn-success">see more</a>
+		  </div>
+		</div>
+
+	{%endfor%}
+
+
 {%endblock%}
